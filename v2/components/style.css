@@ -1,0 +1,365 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+html,
+body {
+  position: realtive;
+  background-color: whitesmoke;
+  overflow-x: hidden;
+}
+
+.envbg {
+  background-color: #035caf;
+  z-index: 0 !important;
+}
+.envbg.show {
+  opacity: 1 !important;
+}
+.envbg.hide {
+  display: none;
+}
+
+.envelope,
+.envbg {
+  width: 100%;
+  max-width: 900px;
+  min-width: 900px;
+  position: absolute;
+  top: 50%;
+  height: 460px;
+  transform: translate(0%, -50%) scale(0.3);
+  overflow: hidden;
+  z-index: 2;
+  will-change: transform;
+  transition: transform 3s ease;
+  opacity: 0;
+}
+.envelope.show,
+.envbg.show {
+  opacity: 1;
+}
+.envelope.done,
+.envbg.done {
+  transition: opacity 1s ease;
+}
+.envelope.done img.lid,
+.envbg.done img.lid {
+  transform: translate(-50%, 0%);
+}
+.envelope.move,
+.envbg.move {
+  -webkit-animation: sendEnvelope 0.5s ease-in forwards 5s;
+  animation: sendEnvelope 0.5s ease-in forwards 5s;
+}
+.envelope:after,
+.envbg:after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background-color: #0484fa;
+}
+@media screen and (min-width: 500px) {
+  .envelope,
+  .envbg {
+    width: 90%;
+  }
+}
+.envelope img,
+.envbg img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transition: transform 0.5s ease;
+  z-index: 10;
+  height: 100%;
+  transform: translate(-50%, 0%);
+}
+.envelope img.lid,
+.envbg img.lid {
+  will-change: transform;
+  transform: translate(-50%, -100%);
+}
+.envelope img.lid.move,
+.envbg img.lid.move {
+  -webkit-animation: moveLid 2s ease-in-out forwards 2.5s;
+  animation: moveLid 2s ease-in-out forwards 2.5s;
+}
+
+.finished {
+  transform: scale(0.35) translateY(20%);
+  position: absolute;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 1s ease;
+  text-align: center;
+}
+@media screen and (max-width: 617px) {
+  .finished {
+    width: 900px;
+  }
+}
+.finished.show {
+  opacity: 1;
+}
+.finished svg {
+  transition: transform 0.5s ease;
+  transform: translate(78%, 10%) rotate(-15deg);
+  fill: #5be85b;
+}
+@media screen and (max-width: 380px) {
+  .finished svg {
+    transform: translate(60%, 10%) rotate(-15deg);
+  }
+}
+.finished h1 {
+  text-align: center;
+  font-size: 92px;
+  margin: 50px 0;
+  font-weight: 400;
+}
+.finished span {
+  text-align: center;
+  font-size: 52px;
+  border: 5px solid #0484fa;
+  padding: 5px 60px;
+  color: #0484fa;
+  letter-spacing: 0.5px;
+  border-radius: 20px;
+  transition: 0.2s ease;
+}
+@media screen and (max-width: 617px) {
+  .finished span {
+    font-size: 42px;
+  }
+}
+.finished span:hover {
+  background-color: #0484fa;
+  color: white;
+  cursor: pointer;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.emailBody {
+  width: 100%;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  max-width: 900px;
+  min-width: 320px;
+  transition: width 0.3s ease, min-width 0.3s ease, transform 0.5s ease-in-out;
+  position: relative;
+  will-change: transform;
+  transform: scale(1) translate(0, 0%);
+  z-index: 3;
+}
+.emailBody.hide {
+  display: none;
+}
+.emailBody.move {
+  -webkit-animation: shrinkEmail 3s ease-in-out forwards;
+  animation: shrinkEmail 3s ease-in-out forwards;
+}
+@media screen and (min-width: 500px) {
+  .emailBody {
+    width: 80%;
+  }
+}
+.emailBody .topBar {
+  position: relative;
+  width: 100%;
+  background-color: #dedede;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  text-align: center;
+  padding: 5px 0;
+}
+.emailBody .topBar .macBtns {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+.emailBody .topBar .macBtns .btn {
+  padding: 7px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+.emailBody .topBar .macBtns .btn.close {
+  background-color: red;
+}
+.emailBody .topBar .macBtns .btn.min {
+  background-color: orange;
+}
+.emailBody .topBar .macBtns .btn.full {
+  background-color: #5be85b;
+}
+.emailBody .topBar span {
+  color: #666;
+  font-weight: 300;
+  font-size: 14px;
+}
+.emailBody .emailInfo .infoLine {
+  width: 100%;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #e1e1e1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 0px;
+}
+.emailBody .emailInfo .infoLine .infoInput {
+  display: flex;
+  width: 100%;
+}
+.emailBody .emailInfo .infoLine .infoInput label {
+  text-align: right;
+  font-weight: normal;
+  display: block;
+  min-width: 65px;
+  font-weight: 300;
+  font-size: 14px;
+  color: #666;
+}
+.emailBody .emailInfo .infoLine .infoInput input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  display: block;
+  margin-left: 10px;
+  -webkit-apperance: none;
+  letter-spacing: 0.1px;
+  font-size: 12px;
+}
+.emailBody .emailInfo .infoLine .infoInput input.active {
+  width: 184px;
+  display: block;
+  color: white;
+  background-color: #0484fa;
+  padding: 0 10px;
+  border-radius: 10px;
+}
+.emailBody .emailInfo .infoLine input#send {
+  width: initial;
+  background-color: transparent;
+  border: 1px solid #0484fa;
+  color: #0484fa;
+  padding: 2px 20px;
+  margin: 0;
+  margin-right: 10px;
+  border-radius: 5px;
+  transition: 0.15s ease;
+}
+.emailBody .emailInfo .infoLine input#send:hover {
+  background-color: #0484fa;
+  color: white;
+  cursor: pointer;
+}
+.emailBody #mainMessage {
+  width: 100%;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  resize: none;
+  margin: 0;
+  height: 300px;
+  border: 0;
+  padding: 20px;
+  font-size: 14px;
+  color: black;
+  outline: none;
+}
+
+@-webkit-keyframes shrinkEmail {
+  0% {
+    transform: scale(1) translate(0, 0%);
+    z-index: 3;
+    min-width: 320px;
+  }
+  65% {
+    z-index: 3;
+  }
+  66% {
+    min-width: 900px;
+    transform: scale(0.29) translate(0, -120%);
+    z-index: 1;
+  }
+  100% {
+    min-width: 900px;
+    transform: scale(0.29) translate(0, 0%);
+    z-index: 1;
+  }
+}
+
+@keyframes shrinkEmail {
+  0% {
+    transform: scale(1) translate(0, 0%);
+    z-index: 3;
+    min-width: 320px;
+  }
+  65% {
+    z-index: 3;
+  }
+  66% {
+    min-width: 900px;
+    transform: scale(0.29) translate(0, -120%);
+    z-index: 1;
+  }
+  100% {
+    min-width: 900px;
+    transform: scale(0.29) translate(0, 0%);
+    z-index: 1;
+  }
+}
+@-webkit-keyframes moveLid {
+  0% {
+    transform: translate(-50%, -100%);
+  }
+  100% {
+    transform: translate(-50%, 0%);
+  }
+}
+@keyframes moveLid {
+  0% {
+    transform: translate(-50%, -100%);
+  }
+  100% {
+    transform: translate(-50%, 0%);
+  }
+}
+@-webkit-keyframes sendEnvelope {
+  0% {
+    transform: translate(0%, -50%) scale(0.3);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(100%, -50%) scale(0.3);
+    opacity: 0;
+  }
+}
+@keyframes sendEnvelope {
+  0% {
+    transform: translate(0%, -50%) scale(0.3);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(100%, -50%) scale(0.3);
+    opacity: 0;
+  }
+}

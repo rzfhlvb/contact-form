@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="components/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="envbg"></div>
+      <div class="envelope">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/153207/EmailBody.png" alt="" />
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/153207/EmailHead.png" alt="" class="lid" />
+      </div>
+
+      <div class="finished">
+        <svg xmlns="http://www.w3.org/2000/svg" width="448.8" height="448.8" viewBox="0 0 448.8 448.8"><path d="M142.8 323.85L35.7 216.75 0 252.45l142.8 142.8 306-306-35.7-35.7" /></svg>
+        <h1>Email Sent</h1>
+        <span class="resetButton">Send Another Email</span>
+      </div>
+
+      <div class="emailBody">
+        <div class="topBar">
+          <div class="macBtns">
+            <div class="btn close"></div>
+            <div class="btn min"></div>
+            <div class="btn full"></div>
+          </div>
+          <span>New Message</span>
+        </div>
+
+        <form action="" method="" onSubmit="return false;">
+          <div class="emailInfo">
+            <div class="infoLine">
+              <div class="infoInput">
+                <label>To :</label>
+                <input type="text" disabled="disabled" class="active" value="rezafahlevibahtiar@gmail.com" />
+              </div>
+
+              <input type="submit" id="send" value="Send" />
+            </div>
+
+            <div class="infoLine">
+              <div class="infoInput">
+                <label>From :</label>
+                <input type="email" id="fromEmail" placeholder="What's your email address?" />
+              </div>
+            </div>
+
+            <div class="infoLine">
+              <div class="infoInput">
+                <label>Name :</label>
+                <input type="text" id="fromName" placeholder="What's your name?" />
+              </div>
+            </div>
+
+            <div class="infoLine">
+              <div class="infoInput">
+                <label>Subject :</label>
+                <input type="text" id="fromSubject" placeholder="What is it you want to talk about?" />
+              </div>
+            </div>
+          </div>
+
+          <textarea id="mainMessage" placeholder="Type your message here..."></textarea>
+        </form>
+      </div>
+    </div>
+
+    <script src="components/script.js"></script>
+  </body>
+</html>
